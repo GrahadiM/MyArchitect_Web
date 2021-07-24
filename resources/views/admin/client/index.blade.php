@@ -44,7 +44,7 @@
                                       <td>{{ $a->name }}</td>
                                       <td>{{ $a->status->name }}</td>
                                       <td>{{ $a->email }}</td>
-                                      <td><img src="{{ $a->url_avatar }}" class="product-img" alt="product img"></td>
+                                      <td><img src="{{ asset('image/profile/' . $a->url_avatar) }}" class="product-img" alt="product img"></td>
                                       {{-- <td>{{ $a->phone }}</td>
                                       <td>{{ $a->address }}</td>
                                       <td>{{ $a->city }}</td>

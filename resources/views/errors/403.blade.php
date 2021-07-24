@@ -32,7 +32,11 @@
               <h1 style="font-size: 100px;">403</h1>
             </div>
             <div class="card-footer text-center py-3">
-              @if (auth()->user()->role_id == 3)
+              @if (auth()->user()->status_id == 1)
+                <h5 class="pb-2">Mohon maaf akses ke halaman ini telah dibatasi.</h5>
+                <p class="pb-2">Silahkan kembali ke dashboard utama.</p>
+                <a href="{{ route('home') }}" class="btn btn-light btn-block mt-3">Dashboard</a>
+              @else
                 <h5 class="pb-2">Mohon maaf akses ke halaman ini telah dibatasi.</h5>
                 <p class="pb-2">Silahkan kembali login menggunakan akun lain.</p>
                 <a href="{{ route('logout') }}" class="btn btn-light btn-block mt-3" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -41,11 +45,6 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-                {{-- <a href="{{ route('logut') }}" class="btn btn-light btn-block mt-3">Logout</a> --}}
-              @else
-                <h5 class="pb-2">Mohon maaf akses ke halaman ini telah dibatasi.</h5>
-                <p class="pb-2">Silahkan kembali ke dashboard utama.</p>
-                <a href="{{ route('home') }}" class="btn btn-light btn-block mt-3">Dashboard</a>
               @endif
             </div>
           </div>

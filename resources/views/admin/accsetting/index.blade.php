@@ -20,7 +20,7 @@
                 <div class="col-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">Tabel Setting Akun
-                            <div class="card-action">
+                            {{-- <div class="card-action">
                                 <div class="dropdown">
                                     <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
                                         <i class="icon-options"></i>
@@ -29,7 +29,7 @@
                                         <a class="dropdown-item" href="{{ route('account-setting.create') }}">Tambah Akun</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover align-items-center table-flush table-borderless">

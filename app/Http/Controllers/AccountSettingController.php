@@ -18,7 +18,7 @@ class AccountSettingController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')->latest()->paginate(10);
+        $users = User::orderBy('name', 'ASC')->latest()->paginate(10);
         return view('admin.accsetting.index', compact('users'));
     }
 
