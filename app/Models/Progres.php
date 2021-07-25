@@ -9,7 +9,7 @@ class Progres extends Model
 {
     use HasFactory;
     protected $table = 'progres';
-    protected $fillable = ['user_id', 'order_id', 'termin_id'];
+    protected $fillable = ['user_id', 'order_id', 'name', 'image', 'note'];
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -17,9 +17,5 @@ class Progres extends Model
     public function order()
     {
         return $this->belongsTo('App\Models\Order');
-    }
-    public function termin()
-    {
-        return $this->belongsTo('App\Models\Termin');
     }
 }

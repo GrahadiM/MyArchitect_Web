@@ -19,19 +19,19 @@
                 <!--Start Progres Type-->
                 <div class="col-12 col-lg-12">
                     <div class="card">
-                        <div class="card-header">Tabel Progress
-                            {{-- @if (Auth::user()->role_id == 2)
+                        <div class="card-header">Tabel Progres
+                            @if (Auth::user()->role_id == 2)
                             <div class="card-action">
                                 <div class="dropdown">
                                     <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
                                         <i class="icon-options"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('progres.create') }}">Tambah Kategori</a>
+                                        <a class="dropdown-item" href="{{ route('progres.create') }}">Tambah Progres</a>
                                     </div>
                                 </div>
                             </div>
-                            @endif --}}
+                            @endif
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover align-items-center table-flush table-borderless">
@@ -40,7 +40,10 @@
                                         <th>Nama Customer</th>
                                         <th>Nama Projek</th>
                                         <th>Nama Paket</th>
-                                        <th>Termin</th>
+                                        <th>Image</th>
+                                        <th>Nama Termin</th>
+                                        <th>Catatan</th>
+                                        <th>Alat</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +53,17 @@
                                         <td style="text-transform: capitalize;">{{ $progres->order->user->name }}</td>
                                         <td style="text-transform: capitalize;">{{ $progres->order->portofolio->project }}</td>
                                         <td style="text-transform: capitalize;">{{ $progres->order->price->name }}</td>
-                                        <td style="text-transform: capitalize;">{{ $progres->termin_id }}</td>
+                                        <td style="text-transform: capitalize;">{{ $progres->name }}</td>
+                                        <td><img src="{{ asset('image/progres/'.$progres->image) }}" alt="" width="150" srcset=""></td>
+                                        <td style="text-transform: capitalize;">{{ $progres->note }}</td>
+                                        <td>
+                                            <form action="{{ route('progres.destroy', $progres->id) }}" method="POST">
+                                                {{-- <a href="{{ route('progres.edit', $progres->id) }}" class="mr-2 btn btn-dark btn-sm">edit</a> --}}
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="mr-2 btn btn-dark btn-sm">hapus</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endif
                                     @endforeach

@@ -68,11 +68,10 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'role_id' => 2,
-            'status_id' => 1,
-            'gender_id' => $data['gender'],
-            'avatar' => "https://via.placeholder.com/110x110",
+            'status_id' => 2,
+            'url_avatar' => "https://via.placeholder.com/110x110",
             'password' => Hash::make($data['password']),
         ]);
-        return view('home');
+        return redirect()->route('home');
     }
 }

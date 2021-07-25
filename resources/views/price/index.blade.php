@@ -1,6 +1,6 @@
 @extends('admin.layouts.index')
 
-@section('title', 'Order')
+@section('title', 'Paket Harga')
 
 @section('content')
 <div class="clearfix"></div>
@@ -16,10 +16,10 @@
                 </div>
             </div>
             <div class="row">
-                <!--Start Orders Type-->
+                <!--Start Price Type-->
                 <div class="col-12 col-lg-12">
                     <div class="card">
-                        <div class="card-header">Tabel Order
+                        <div class="card-header">Tabel Paket Harga
                             @if (Auth::user()->role_id == 2)
                             <div class="card-action">
                                 <div class="dropdown">
@@ -27,7 +27,7 @@
                                         <i class="icon-options"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="{{ route('price.create') }}">Tambah Kategori</a>
+                                        <a class="dropdown-item" href="{{ route('price.create') }}">Tambah Paket</a>
                                     </div>
                                 </div>
                             </div>
@@ -50,14 +50,12 @@
                                         <td>{{ $price->price }}</td>
                                         <td>{{ $price->desc }}</td>
                                         <td>
-                                            <div>
-                                                <form action="{{ route('price.destroy', $price->id) }}" method="POST">
-                                                    {{-- <a href="{{ route('price.edit', $price->id) }}" class="mr-2 btn btn-dark btn-sm">edit</a> --}}
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="mr-2 btn btn-dark btn-sm">hapus</button>
-                                                </form>
-                                            </div>
+                                            <form action="{{ route('price.destroy', $price->id) }}" method="POST">
+                                                {{-- <a href="{{ route('price.edit', $price->id) }}" class="mr-2 btn btn-dark btn-sm">edit</a> --}}
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="mr-2 btn btn-dark btn-sm">hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

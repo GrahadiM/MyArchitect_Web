@@ -43,8 +43,12 @@
                     </div>
                     </a>
                 </li>
-                {{-- <li class="dropdown-divider"></li>
-                <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li> --}}
+                @if (Auth::user()->role_id == 2)
+                <li class="dropdown-divider"></li>
+                <li class="dropdown-item">
+                    <a href="{{ route('inbox.index') }}"><i class="icon-envelope mr-2"></i> {{ __('Inbox') }}</a>
+                </li>
+                @endif
                 <li class="dropdown-divider"></li>
                 <li class="dropdown-item">
                     <a href="{{ url('/profile') }}">

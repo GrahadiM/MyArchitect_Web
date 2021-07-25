@@ -17,7 +17,9 @@ class CreateProgresTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('order_id');
-            $table->bigInteger('termin_id');
+            $table->string('name');
+            $table->string('image');
+            $table->string('note');
             $table->timestamps();
         });
     }

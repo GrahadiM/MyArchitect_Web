@@ -123,11 +123,11 @@
               </div>
               <div class="form-group">
                 <label for="image">Gambar</label>
-                <input type="file" name="image" class="form-control form-control-rounded" id="image" placeholder="Enter Your Image">
+                <input type="text" name="image" class="form-control form-control-rounded" id="image" placeholder="Enter Your Image">
               </div>
               <div class="form-group">
                 <label for="video">Video</label>
-                <input type="file" name="video" class="form-control form-control-rounded" id="video" placeholder="Enter Your Video">
+                <input type="text" name="video" class="form-control form-control-rounded" id="video" placeholder="Enter Your Video">
               </div>
               <div class="form-group">
                 <label for="desc">Description</label>

@@ -27,8 +27,9 @@ Route::group(['middleware' => ['auth', 'verified', 'status:1']], function () {
 
     //Route Arsitek
     Route::group(['middleware' => ['auth', 'role:2']], function () {
-    Route::resource('/price', App\Http\Controllers\PriceController::class);
-    Route::resource('/progres', App\Http\Controllers\ProgresController::class);
+        Route::resource('/inbox', App\Http\Controllers\InboxController::class, ['only' => ['index']]);
+        Route::resource('/price', App\Http\Controllers\PriceController::class);
+        Route::resource('/progres', App\Http\Controllers\ProgresController::class);
     });
 
     //Route Admin

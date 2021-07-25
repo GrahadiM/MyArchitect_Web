@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryModel;
-use App\Models\CategoryType;
-use App\Models\Order;
-use App\Models\Portofolio;
-use App\Models\Progres;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Progres;
 use Illuminate\Http\Request;
 
 class ProgresController extends Controller
@@ -30,12 +27,9 @@ class ProgresController extends Controller
      */
     public function create()
     {
-        $users = User::where('role_id', '3')->get();
-        $category_type = CategoryType::all();
-        $category_model = CategoryModel::all();
-        $portofolio = Portofolio::all();
+        $users = User::where('role_id', '2')->get();
         $orders = Order::all();
-        return view('progres.create', compact('users', 'category_type', 'category_model', 'portofolio', 'orders'));
+        return view('progres.create', compact('users', 'orders'));
     }
 
     /**
@@ -46,7 +40,36 @@ class ProgresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            "user_id" => "required",
+            "order_id" => "required",
+            "name" => "required",
+            // "image" => "required|mimes:png,jpg,jpeg",
+            "note" => "required",
+        ]);
+
+        // if ($request->hasFile("image")) {
+        //     $file = $request->file("image");
+        //     $filename = time() . "." . $file->getClientOriginalExtension();
+
+        //     $file->move('image/progres', $filename);
+        //     Progres::create([
+        //         "user_id" => $request->user_id,
+        //         "order_id" => $request->order_id,
+        //         "name" => $request->name,
+        //         "image" => $filename,
+        //         "note" => $request->note,
+        //     ]);
+        // }
+        Progres::create([
+            "user_id" => $request->user_id,
+            "order_id" => $request->order_id,
+            "name" => $request->name,
+            "image" => $request->image,
+            "note" => $request->note,
+        ]);
+        return redirect()->route('progres.index');
     }
 
     /**
@@ -78,9 +101,42 @@ class ProgresController extends Controller
      * @param  \App\Models\Progres  $progres
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Progres $progres)
+    public function update(Request $request, Progres $progres, $id)
     {
-        //
+        $this->validate($request, [
+            "user_id" => "required",
+            "order_id" => "required",
+            "image" => "required|mimes:png,jpg,jpeg",
+            "name" => "required|string",
+            "note" => "required|string",
+        ]);
+
+    	$progres = Progres::find($id);
+
+        if ($request->hasFile("image")) {
+            $file = $request->file("image");
+            $filename = time() . "." . $file->getClientOriginalExtension();
+
+            $file->move('image/progres', $filename);
+            // File::delete('assets/image/profile' . $progres->image);
+            $progres->update([
+                "user_id" => $request->user_id,
+                "order_id" => $request->order_id,
+                "name" => $request->name,
+                "image" => $filename,
+                "note" => $request->note,
+            ]);
+        } else {
+            //jika prog$progres tidak mengubah foto
+            $progres->update([
+                "user_id" => $request->user_id,
+                "order_id" => $request->order_id,
+                "name" => $request->name,
+                "note" => $request->note,
+            ]);
+        }
+    	
+    	return redirect('profile');
     }
 
     /**
@@ -89,8 +145,10 @@ class ProgresController extends Controller
      * @param  \App\Models\Progres  $progres
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Progres $progres)
+    public function destroy(Progres $progres, $id)
     {
-        //
+        $progres = Progres::find($id);
+        $progres->delete();
+        return redirect()->back();
     }
 }

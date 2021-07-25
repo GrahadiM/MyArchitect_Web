@@ -20,22 +20,18 @@
                 <div class="col-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">Tabel Portofolio
+                            @if (auth()->user()->role_id == 2)
                             <div class="card-action">
                                 <div class="dropdown">
                                     <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
                                         <i class="icon-options"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        @if (auth()->user()->role_id == 2)
-                                            <a class="dropdown-item" href="{{ route('portofolio.create') }}">Tambah Portofolio</a>
-                                        @endif
-                                        {{-- <a class="dropdown-item" href="javascript:void();">Another action</a>
-                                        <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="javascript:void();">Separated link</a> --}}
+                                        <a class="dropdown-item" href="{{ route('portofolio.create') }}">Tambah Portofolio</a>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover align-items-center table-flush table-borderless">
@@ -48,9 +44,6 @@
                                         <th>Tipe Bangunan</th>
                                         <th>Gaya Desain</th>
                                         <th>Luas Bangunan</th>
-                                        {{-- <th>Gambar</th>
-                                        <th>Video</th>
-                                        <th>Deskripsi</th> --}}
                                         <th>Alat</th>
                                     </tr>
                                 </thead>
@@ -63,9 +56,6 @@
                                         <td style="text-transform: capitalize;">{{ $portofolio->category_type->title }}</td>
                                         <td style="text-transform: capitalize;">{{ $portofolio->category_model->title }}</td>
                                         <td>{{ $portofolio->luasbangunan }}</td>
-                                        {{-- <td>{{ $portofolio->url_image }}</td>
-                                        <td>{{ $portofolio->url_video }}</td>
-                                        <td>{{ $portofolio->desc }}</td> --}}
                                         <td>
                                             <form action="{{ route('portofolio.destroy', $portofolio->id) }}" method="POST">
                                                 <a href="{{ route('portofolio.show', $portofolio->id) }}" class="mr-2 btn btn-dark btn-sm">detail</a>
@@ -90,9 +80,6 @@
                                         <td style="text-transform: capitalize;">{{ $portofolio->category_type->title }}</td>
                                         <td style="text-transform: capitalize;">{{ $portofolio->category_model->title }}</td>
                                         <td>{{ $portofolio->luasbangunan }}</td>
-                                        {{-- <td>{{ $portofolio->url_image }}</td>
-                                        <td>{{ $portofolio->url_video }}</td>
-                                        <td>{{ $portofolio->desc }}</td> --}}
                                         <td>
                                             <form action="{{ route('portofolio.destroy', $portofolio->id) }}" method="POST">
                                                 <a href="{{ route('portofolio.show', $portofolio->id) }}" class="mr-2 btn btn-dark btn-sm">detail</a>

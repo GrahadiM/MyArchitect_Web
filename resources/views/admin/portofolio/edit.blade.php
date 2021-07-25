@@ -58,11 +58,11 @@
               </div>
               <div class="form-group">
                 <label for="image">Gambar</label>
-                <input type="file" name="image" class="form-control form-control-rounded" id="image" placeholder="{{ $portofolio->url_image }}">
+                <input type="text" name="image" class="form-control form-control-rounded" id="image" placeholder="{{ $portofolio->url_image }}">
               </div>
               <div class="form-group">
                 <label for="video">Video</label>
-                <input type="file" name="video" class="form-control form-control-rounded" id="video" placeholder="{{ $portofolio->url_video }}">
+                <input type="text" name="video" class="form-control form-control-rounded" id="video" placeholder="{{ $portofolio->url_video }}">
               </div>
               <div class="form-group">
                 <label for="desc">Description</label>
@@ -127,11 +127,11 @@
               </div>
               <div class="form-group">
                 <label for="image">Gambar</label>
-                <input type="file" name="image" class="form-control form-control-rounded" id="image" value="{{ $portofolio->url_image }}">
+                <input type="text" name="image" class="form-control form-control-rounded" id="image" value="{{ $portofolio->url_image }}">
               </div>
               <div class="form-group">
                 <label for="video">Video</label>
-                <input type="file" name="video" class="form-control form-control-rounded" id="video" value="{{ $portofolio->url_video }}">
+                <input type="text" name="video" class="form-control form-control-rounded" id="video" value="{{ $portofolio->url_video }}">
               </div>
               <div class="form-group">
                 <label for="desc">Description</label>

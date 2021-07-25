@@ -15,56 +15,39 @@
             <form action="{{ route('progres.store') }}" method="POST">
             @csrf
               <div class="form-group">
-                <label for="name">Nama</label>
-                <select name="user_id" id="name" class="form-control form-control-rounded">
+                <label for="user_id">Nama anda</label>
+                <select name="user_id" id="user_id" class="form-control form-control-rounded">
                   @foreach ($users as $user)
+                  @if ($user->id == auth()->user()->id)
                     <option value="{{ $user->id }}">{{ $user->name }}</option>
+                  @endif
                   @endforeach
                 </select>
               </div>
               <div class="form-group">
-                <label for="portofolio">Portofolio</label>
-                <select name="portofolio_id" id="portofolio" class="form-control form-control-rounded">
-                  @foreach ($portofolio as $porto)
-                    <option value="{{ $porto->id }}" style="text-transform: capitalize;">{{ $porto->project }}</option>
+                <label for="order_id">Order masuk dari customer</label>
+                <select name="order_id" id="order_id" class="form-control form-control-rounded">
+                  @foreach ($orders as $order)
+                  @if ($order->portofolio->user->id == auth()->user()->id)
+                    <option value="{{ $order->id }}">{{ $order->user->name }}</option>
+                  @endif
                   @endforeach
                 </select>
               </div>
               <div class="form-group">
-                <label for="type">Kategori Tipe</label>
-                <select name="category_type_id" id="type" class="form-control form-control-rounded">
-                  @foreach ($category_type as $type)
-                    <option value="{{ $type->id }}">{{ $type->title }}</option>
-                  @endforeach
-                </select>
+                <label for="name">Nama Progres</label>
+                <input type="text" name="name" class="form-control form-control-rounded" id="name" placeholder="Enter Your Progres Name">
               </div>
               <div class="form-group">
-                <label for="model">Kategori Model</label>
-                <select name="category_model_id" id="model" class="form-control form-control-rounded">
-                  @foreach ($category_model as $model)
-                    <option value="{{ $model->id }}">{{ $model->title }}</option>
-                  @endforeach
-                </select>
+                <label for="image">Gambar Progres</label>
+                <input name="image" type="file" class="form-control-file" id="image">
               </div>
               <div class="form-group">
-                <label for="wa">Nomer WhatsApp</label>
-                <input type="text" name="wa" class="form-control form-control-rounded" id="wa" placeholder="Enter Your WhatsApp">
+                <label for="note">Catatan</label>
+                <input type="text" name="note" class="form-control form-control-rounded" id="note" placeholder="Enter Your Note">
               </div>
-              <div class="form-group">
-                <label for="area">Luas Bangunan</label>
-                <input type="text" name="area" class="form-control form-control-rounded" id="area" placeholder="Enter Your Area">
-              </div>
-              <div class="form-group">
-                <label for="price">Harga</label>
-                <input type="text" name="harga" class="form-control form-control-rounded" id="price" placeholder="Enter Your Price">
-              </div>
-              <div class="form-group">
-                <label for="address">Alamat</label>
-                <input type="text" name="address" class="form-control form-control-rounded" id="address" placeholder="Enter Your Address">
-              </div>
-              <div class="form-group">
-                <button type="submit" value="save" class="btn btn-light btn-round px-5">Create</button>
-              </div>
+              <button type="submit" class="btn btn-light btn-round px-5">Create</button>
+              <a href="{{ route('progres.index') }}" class="btn btn-danger btn-round px-5">Cancel</a>
             </form>
           </div>
         </div>

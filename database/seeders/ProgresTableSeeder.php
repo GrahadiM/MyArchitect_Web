@@ -19,17 +19,23 @@ class ProgresTableSeeder extends Seeder
             [
                 'user_id' => 3,
                 'order_id' => 1,
-                'termin_id' => 1,
+                'name' => 'Desain dalam tahap pembuatan',
+                'image' => 'step-1.jpg',
+                'note' => 'Desain tanpa perbaikan',
             ],
             [
                 'user_id' => 3,
                 'order_id' => 1,
-                'termin_id' => 2,
+                'name' => 'Desain sudah selesai dibuat',
+                'image' => 'step-2.jpg',
+                'note' => 'Desain tanpa perbaikan',
             ],
             [
                 'user_id' => 3,
                 'order_id' => 1,
-                'termin_id' => 3,
+                'name' => 'Rumah sudah selesai dibuat',
+                'image' => 'step-3.jpg',
+                'note' => 'Desain tanpa perbaikan',
             ],
         ];
         

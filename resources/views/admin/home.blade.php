@@ -27,7 +27,7 @@
                                 <div class="progress my-3" style="height:3px;">
                                     <div class="progress-bar" style="width:100%"></div>
                                 </div>
-                                <p class="mb-0 text-white small-font">Client <span class="float-right"><a href="{{ route('client.index') }}"><i class="zmdi zmdi-long-arrow-right"></i></a></span></p>
+                                <p class="mb-0 text-white small-font">Customer <span class="float-right"><a href="{{ route('client.index') }}"><i class="zmdi zmdi-long-arrow-right"></i></a></span></p>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6 col-xl-3 border-light">

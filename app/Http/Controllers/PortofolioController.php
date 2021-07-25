@@ -26,17 +26,10 @@ class PortofolioController extends Controller
 
     public function create()
     {
-        if (auth()->user()->role_id == 1) {
-            $users = User::where('role_id', '2')->get();
-            $category_types = CategoryType::all();
-            $category_models = CategoryModel::all();
-            return view('admin.portofolio.create', compact('users', 'category_types', 'category_models'));
-        } else {
-            $users = User::where('role_id', '2')->get();
-            $category_types = CategoryType::all();
-            $category_models = CategoryModel::all();
-            return view('admin.portofolio.create', compact('users', 'category_types', 'category_models'));
-        }
+        $users = User::where('role_id', '2')->get();
+        $category_types = CategoryType::all();
+        $category_models = CategoryModel::all();
+        return view('admin.portofolio.create', compact('users', 'category_types', 'category_models'));
     }
 
     public function store(Request $request)
@@ -47,7 +40,6 @@ class PortofolioController extends Controller
             'category_type_id' => 'required',
             'category_model_id' => 'required',
             'luasbangunan' => 'required',
-            // 'url_image' => 'required',
             'harga' => 'required',
         ]);
 
@@ -62,12 +54,6 @@ class PortofolioController extends Controller
             'url_image' => $request->url_image,
             'url_video' => $request->url_video,
             'desc' => $request->desc,
-            // if ($request->hasFile('url_image')) {
-            //     $file = request('image');
-            //     $dbpath = rand().'.'.$file->getClientOriginalExtension();
-            //     $file->move(public_path('url_image'),$dbpath);
-            //     $portofolio->url_image = $dbpath;
-            // }
         ]);
         return redirect('/portofolio');
     }
@@ -96,7 +82,6 @@ class PortofolioController extends Controller
             'category_type_id' => 'required',
             'category_model_id' => 'required',
             'luasbangunan' => 'required',
-            // 'url_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'harga' => 'required',
         ]);
         
