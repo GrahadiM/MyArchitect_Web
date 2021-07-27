@@ -7,22 +7,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
     protected $fillable = [
-        'name', 
-        'role_id', 
-        'status_id', 
+        'name',
+        'role_id',
+        'status_id',
         'email',
         'password',
-        'url_avatar', 
-        'phone', 
+        'url_avatar',
+        'phone',
         'city',
-        'address', 
+        'address',
         'desc',
         'gender_id',
         'created_at',
+        'remember_token'
     ];
 
     protected $hidden = [
@@ -32,7 +35,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function role()
     {
         return $this->belongsTo('App\Models\Role');
@@ -56,5 +59,13 @@ class User extends Authenticatable
     public function review()
     {
         return $this->hasMany('App\Models\Review');
+    }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

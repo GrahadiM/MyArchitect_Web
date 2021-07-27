@@ -22,4 +22,20 @@ class Portofolio extends Model
     {
         return $this->belongsTo('App\Models\CategoryModel');
     }
+
+    public function getTitleAttribute(){
+      return $this->project;
+    }
+
+    public function getAuthorAttribute(){
+      return $this->user->name;
+    }
+
+    public function getCategoryTypeNameAttribute(){
+      return $this->category_type->title;
+    }
+
+    public function getCategoryModelNameAttribute(){
+      return $this->category_model->title;
+    }
 }

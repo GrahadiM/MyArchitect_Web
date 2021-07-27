@@ -12,10 +12,12 @@ Route::get('/404', function () {return view('errors.404');})->name('404');
 //HTTP 500
 Route::get('/500', function () {return view('errors.500');})->name('500');
 
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'verified', 'status:1']], function () {
-    
+
     //Route Admin dan Arsitek
     Route::group(['middleware' => ['auth', 'role:1,2']], function () {
         Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
