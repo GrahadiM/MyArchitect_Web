@@ -27,7 +27,7 @@ Route::resource('review', App\Http\Controllers\V1\ReviewController::class)->midd
 // Route::resource('history', App\Http\Controllers\V1\HistoryController::class);
 // Route::resource('akun', App\Http\Controllers\V1\AkunController::class)->middleware('jwt.verify');
 Route::resource('order', App\Http\Controllers\V1\OrderController::class);//->middleware('jwt.verify');
-Route::resource('price', App\Http\Controllers\V1\PriceController::class)->middleware('jwt.verify');
+Route::resource('price', App\Http\Controllers\V1\PriceController::class);
 
 Route::post('akun/edit', [App\Http\Controllers\V1\AkunController::class, 'edit']);
 Route::get('akun/show', [App\Http\Controllers\V1\AkunController::class, 'show']);

@@ -27,6 +27,10 @@ class LoginController extends Controller
       }
 
       $user = User::whereId(auth()->user()->id)->first();
+
+      if ($user->role_id != 3) {
+        return response()->json(['success'=>false,'data'=>'{}','message'=> 'hanya customer yang bisa login','token'=>null], 500);
+      }
       $user->update(["remember_token"=>"Bearer ".$token]);
       return response()->json(['success'=>true,'data'=>['token'=>$token],'message'=>'Success Login','token'=>$token,"userId"=>auth()->user()->id],200);
     }

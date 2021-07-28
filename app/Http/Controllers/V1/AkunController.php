@@ -69,7 +69,7 @@ class AkunController extends Controller
            "desc"=>$request->desc,
            "city"=>$request->city,
            "address"=>$request->address,
-           "email"=>$request->email,
+           // "email"=>$request->email,
          ]);
 
          if ($request->password != null) {

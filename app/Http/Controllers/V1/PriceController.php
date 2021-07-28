@@ -12,9 +12,14 @@ class PriceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $price = Price::paginate(10);
+      if ($request->user_id != null) {
+        $price = Price::whereUserId($request->user_id)->get();
+      }else{
+          $price = Price::get();
+      }
+
       return response()->json(['success'=>true,'data'=>['price'=>$price],'message'=>'Success'],200);
     }
 

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Model\Price;
 class Portofolio extends Model
 {
     use HasFactory;
@@ -37,5 +37,9 @@ class Portofolio extends Model
 
     public function getCategoryModelNameAttribute(){
       return $this->category_model->title;
+    }
+
+    public function getPriceAttribute(){
+      return Price::whereUserId($this->user_id)->get();
     }
 }
