@@ -42,7 +42,7 @@ class AkunController extends Controller
        // return response()->json(['success'=>false,'data'=>$request->all(),'message'=>"User Not Found"],500);
 
        try {
-         $auth =  User::where('remember_token',"LIKE","%".$request->token)->first();
+         $auth =  User::whereId($request->userId)->first();
          $auth->id;
        } catch (\Exception $e) {
          return response()->json(['success'=>false,'data'=>"{}",'message'=>"User Not Found".$e->getMessage()],500);
@@ -72,14 +72,21 @@ class AkunController extends Controller
            // "email"=>$request->email,
          ]);
 
-         if ($request->password != null) {
-           $auth->update(['password' => bcrypt($request->password)]);
-         }
+
        } catch (\Exception $e) {
          return response()->json(['success'=>false,'data'=>"{}",'message'=>"Failed Create ".$e->getMessage(),'request'=>$request->all()],500);
        }
 
-       return response()->json(['success'=>true,'data'=>['auth'=>$auth],'message'=>'Success'],200);
+       try {
+         if ($request->password != null) {
+           $auth->update(['password' => bcrypt($request->password)]);
+         }
+       } catch (\Exception $e) {
+          return response()->json(['auth'=>$auth,'success'=>false,'data'=>"{}",'message'=>"Failed Create ".$e->getMessage(),'request'=>$request->all()],500);
+       }
+
+
+       return response()->json(['success'=>true,'data'=>['auth'=>$auth],'message'=>'Success','request'=>$request->all()],200);
      }
 
     /**
