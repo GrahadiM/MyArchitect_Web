@@ -5,6 +5,8 @@ namespace App\Http\Controllers\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\User;
+use App\Models\Order;
 
 class ReviewController extends Controller
 {
@@ -37,12 +39,33 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-      $review = Review::create([
-        "user_id"=>auth()->user()->id,
-        "portofolio_id"=>$request->portofolio_id,
-        "comment"=>$request->comment,
-        "star"=>$request->star
-      ]);
+      try {
+        $auth =  User::where('remember_token',"LIKE","%".$request->token)->first();
+        $auth->id;
+      } catch (\Exception $e) {
+        return response()->json(['success'=>false,'data'=>"{}",'message'=>"User Not Found".$e->getMessage()],500);
+      }
+
+      try {
+        $order = Order::whereId($request->order_id)->first();
+        $order->portofolio_id;
+      } catch (\Exception $e) {
+        return response()->json(['success'=>false,'data'=>"{}",'message'=>"User Not Found".$e->getMessage()],500);
+      }
+
+
+      try {
+        $review = Review::create([
+          "user_id"=>$auth->id,
+          "portofolio_id"=>$order->portofolio_id,
+          "order_id"=>$request->order_id,
+          "comment"=>$request->comment,
+          "star"=>$request->star
+        ]);
+      } catch (\Exception $e) {
+        return response()->json(['success'=>false,'data'=>"{}",'message'=>"User Not Found".$e->getMessage()],500);
+      }
+
       return response()->json(['success'=>true,'data'=>['review'=>$review],'message'=>'Success'],200);
     }
 

@@ -17,6 +17,7 @@ class CreateReviewTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('portofolio_id');
+            $table->bigInteger('order_id')->nullable();
             $table->string('comment');
             $table->integer('star');
             $table->timestamps();

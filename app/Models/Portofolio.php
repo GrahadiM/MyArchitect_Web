@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Price;
+use App\Models\Price;
 class Portofolio extends Model
 {
     use HasFactory;
+    // protected $append = ['category_type_name','category_model_name','author'];
     protected $table = 'portofolio';
     protected $fillable = ['project', 'user_id', 'category_type_id', 'category_model_id', 'url_image', 'url_video', 'luasbangunan', 'desc'];
     public function user()
@@ -42,4 +43,6 @@ class Portofolio extends Model
     public function getPriceAttribute(){
       return Price::whereUserId($this->user_id)->get();
     }
+
+
 }

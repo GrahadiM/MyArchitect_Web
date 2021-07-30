@@ -16,6 +16,7 @@ class Order extends Model
         'wa',
         'area',
         'address',
+        'luas_lahan'
     ];
 
     public function user()
@@ -30,4 +31,19 @@ class Order extends Model
     {
         return $this->belongsTo('App\Models\Price');
     }
+
+    // public function progres()
+    // {
+    //     return $this->belongsTo('App\Models\Progres');
+    // }
+
+    public function progres(){
+        return $this->hasMany('App\Models\Progres');
+    }
+
+    public function getProgresakhirAttribute(){
+      return count($this->progres) > 0  ? collect($this->progres)->sortByDesc('id')->first() : "{}";
+    }
+
+
 }

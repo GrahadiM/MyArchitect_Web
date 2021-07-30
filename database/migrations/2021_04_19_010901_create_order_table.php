@@ -18,6 +18,7 @@ class CreateOrderTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('portofolio_id');
             $table->bigInteger('price_id');
+            $table->bigInteger('luas_lahan')->nullable();
             $table->string('wa');
             $table->string('area');
             $table->string('address');

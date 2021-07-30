@@ -31,7 +31,7 @@ class PortofolioController extends Controller
            $query->append('category_type_name');
            $query->append('category_model_name');
            $query->append('author');
-           // $query->append('price');
+           $query->append('price');
       });
 
         return response()->json(['success'=>true,'data'=>['portofolio'=>$portofolio],'message'=>'Success'],200);

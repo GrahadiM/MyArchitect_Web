@@ -23,7 +23,7 @@ Route::post('register', [App\Http\Controllers\V1\Auth\RegisterController::class,
 
 Route::resource('kategori', App\Http\Controllers\V1\CategoryController::class);
 Route::resource('portofolio', App\Http\Controllers\V1\PortofolioController::class);//->middleware('jwt.verify');
-Route::resource('review', App\Http\Controllers\V1\ReviewController::class)->middleware('jwt.verify');
+Route::resource('review', App\Http\Controllers\V1\ReviewController::class);
 // Route::resource('history', App\Http\Controllers\V1\HistoryController::class);
 // Route::resource('akun', App\Http\Controllers\V1\AkunController::class)->middleware('jwt.verify');
 Route::resource('order', App\Http\Controllers\V1\OrderController::class);//->middleware('jwt.verify');

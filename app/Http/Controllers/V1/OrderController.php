@@ -68,7 +68,8 @@ class OrderController extends Controller
           "price_id"=>$request->price_id != null ? $request->price_id : 1,
           "wa"=>$request->wa,
           "area"=>$request->area,
-          "address"=>$request->address
+          "address"=>$request->address,
+          "luas_lahan"=>$request->luasLahan
         ]);
       } catch (\Exception $e) {
         return response()->json(['success'=>false,'data'=>"{}",'message'=>"Failed Create ".$e->getMessage(),'request'=>$request->all()],500);

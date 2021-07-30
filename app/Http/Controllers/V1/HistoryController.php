@@ -16,16 +16,28 @@ class HistoryController extends Controller
      */
     public function index(Request $request)
     {
-        $order = Order::whereUserId($request->id)->pluck('portofolio_id');
-        $portofolio = Portofolio::with("category_type")->with("category_model")->with("user")->whereIn('id',$order)->get();
-        $portofolio->each(function($query) {
-           $query->append('title');
-           $query->append('category_type_name');
-           $query->append('category_model_name');
-           $query->append('author');
-      });
+        $orders = Order::whereUserId($request->userId)->with('progres')->with('user')->with('portofolio.category_type')->with('portofolio.category_model')->with('portofolio.user')->get();
 
-        return response()->json(['success'=>true,'data'=>['order'=>$portofolio],'message'=>'Success','request'=>$request->all()],200);
+        //->pluck('portofolio_id');
+      //   $portofolio = Portofolio::with("category_type")->with("category_model")->with("progres")->with("user")->whereIn('id',$order)->get();
+        $orders->each(function($query) {
+           $query->append('progres_akhir');
+            $query->portofolio->append('title');
+           $query->portofolio->append('category_type_name');
+           $query->portofolio->append('category_model_name');
+           $query->portofolio->append('author');
+         });
+
+
+         //
+         // return $orders;
+      //      $query->append('category_type_name');
+      //      $query->append('category_model_name');
+      //      $query->append('author');
+      //      $query->append('progres_akhir');
+      // });
+      //
+        return response()->json(['success'=>true,'data'=>['order'=>$orders],'message'=>'Success','request'=>$request->all()],200);
     }
 
     /**
