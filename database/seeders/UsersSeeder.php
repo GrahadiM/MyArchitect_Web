@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Price;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +16,11 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+      Price::truncate();
+
+
         User::truncate();
+
         $user = [
             [
                 'name' => 'Alyssa Noveria Salsabila',
@@ -193,9 +198,36 @@ class UsersSeeder extends Seeder
                 'remember_token' => Str::random(60),
             ],
         ];
-        
+
         foreach ($user as $key => $value) {
-            User::create($value);
+            $new_user = User::create($value);
+            if ($value['role_id'] == 2) {
+
+              $price = [
+                  [
+                      'user_id' => $new_user->id,
+                      'name' => 'Paket Murah',
+                      'price' => '30.000.000',
+                      'desc' => 'Hal-hal yang tidak sesuai diluar tanggung jawab saya',
+                  ],
+                  [
+                      'user_id' => $new_user->id,
+                      'name' => 'Paket Sedang',
+                      'price' => '60.000.000',
+                      'desc' => 'Hal-hal yang anda inginkan adalah tanggung jawab saya',
+                  ],
+                  [
+                      'user_id' => $new_user->id,
+                      'name' => 'Paket Mahal',
+                      'price' => '100.000.000',
+                      'desc' => 'Hal-hal yang anda inginkan adalah prioritas saya',
+                  ],
+              ];
+
+              foreach ($price as $key => $v) {
+                Price::create($v);
+              }
+            }
         }
     }
 }

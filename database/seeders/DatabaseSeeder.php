@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
                 StatusSeeder::class,
                 CategoryTypeSeeder::class,
                 CategoryModelSeeder::class,
-                PriceTableSeeder::class,
+                // PriceTableSeeder::class,
                 PortofolioSeeder::class,
                 OrderTableSeeder::class,
                 ReviewTableSeeder::class,
